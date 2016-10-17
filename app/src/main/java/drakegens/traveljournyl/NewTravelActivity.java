@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.EditText;
 
-public class NewTravel extends AppCompatActivity {
+public class NewTravelActivity extends AppCompatActivity {
 
     TextView header;
     EditText location;
