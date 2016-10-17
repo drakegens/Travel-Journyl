@@ -6,7 +6,7 @@ import android.widget.TextView;
 import android.widget.EditText;
 
 public class NewTravelActivity extends AppCompatActivity {
-
+    //instance variables
     TextView header;
     EditText location;
 
