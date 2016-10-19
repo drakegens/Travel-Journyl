@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //launch that activity
+                Intent intent = new Intent(MainActivity.this, ViewTravelFactsActivity.class);
+                startActivity(intent);
             }
 
 

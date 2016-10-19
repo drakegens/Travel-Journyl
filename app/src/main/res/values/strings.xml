@@ -7,4 +7,8 @@
     <string name="existingTravelExperience">Existing Travel Experiences</string>
     <string name="viewTravelFacts">View Travel Facts</string>
     <string name="viewRSSFeed">View RSS Feed</string>
+    <string name="travelFactHeader">Travel Fact of the Day!</string>
+    <string name="travelFact"> </string>
+    <string name="addNewFactBtnTxt">Add Your Own Fact!</string>
+    <string name="newRandomFactBtnTxt">New Fact</string>
 </resources>
