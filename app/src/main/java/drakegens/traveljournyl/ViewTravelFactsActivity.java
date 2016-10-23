@@ -1,7 +1,5 @@
 package drakegens.traveljournyl;
 
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,17 +11,26 @@ public class ViewTravelFactsActivity extends AppCompatActivity {
     Button newRandomFactbtn;
     Button addNewTravelFactbtn;
     TextView displayTravelFact;
-    SQLiteOpenHelper dbManager;
-    private static final String dbName = "C:\\Users\\Drake\\OneDrive\\Documents\\TravelJournyl\\app\\src\\main\\assets\\travel_app_db.db";
-    private static int version = 1;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_travel_facts);
+//add error handling
+        //open database tasks
+        //File databaseFile = getDatabasePath(dbName);
+        //dbManager.openDatabase(databaseFile, cursorFactory, OPEN_READWRITE);
+        // File dbFile = this.getDatabasePath("travel_app_db");
+
+
+//        dbManager.setLocale(Locale.getDefault());
+//        dbManager.setVersion(version);
+
 
         displayTravelFact = (TextView) findViewById(R.id.displayFact);
         //set random fact from db
-
+        displayTravelFact.setText(generateRandomFact());
         newRandomFactbtn = (Button) findViewById(R.id.newRandomFactbtn);
         newRandomFactbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,19 +50,20 @@ public class ViewTravelFactsActivity extends AppCompatActivity {
             }
         });
 
-        dbManager = new SQLiteOpenHelper(this, dbName, null, version) {
-            @Override
-            public void onCreate(SQLiteDatabase db) {
 
-            }
+    }
 
-            @Override
-            public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    private String generateRandomFact() {
+        determineSizeOfTable();
+        return "random fact";
+    }
 
-            }
-        };
-
-
-
-}
+    private int determineSizeOfTable() {
+        String query = "SELECT count(*) FROM travel_facts;";
+        //SELECT count(*) FROM travel_facts;
+        // Cursor cursor = dbManager.rawQuery(query, null);
+        //Log.d("Debug", String.valueOf(cursor.getCount()));
+        // return cursor.getCount();
+        return 1;
+    }
 }
