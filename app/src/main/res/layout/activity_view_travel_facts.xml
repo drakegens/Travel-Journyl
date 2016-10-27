@@ -29,11 +29,11 @@
     <TextView
         android:text="@string/travelFact"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="161dp"
         android:id="@+id/displayFact"
-        android:layout_weight="0.33"
         android:padding="30dp"
-        android:layout_marginTop="25dp"/>
+        android:layout_marginTop="25dp"
+        android:layout_weight="0.07" />
 
     <LinearLayout
         android:orientation="horizontal"

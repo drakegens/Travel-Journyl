@@ -19,6 +19,7 @@ public class ViewTravelFactsActivity extends AppCompatActivity {
     private String alertDialogTitle = "Add New Fact";
     private String alertDialogMessage = "Enter your fact: ";
     private EditText alertDialogText;
+    private String addedNewFact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +52,15 @@ public class ViewTravelFactsActivity extends AppCompatActivity {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String addedNewFact = alertDialogText.getText().toString();
+                         addedNewFact = alertDialogText.getText().toString();
+                        addNewFact(addedNewFact);
 
                     }
                 });
-                //  addNewFact(addedNewFact);
+                AlertDialog alert = alertDialogBuilder.create();
+                alert.show();
+
+
 
 
             }
@@ -65,14 +70,18 @@ public class ViewTravelFactsActivity extends AppCompatActivity {
     }
 
     private String generateRandomFact() {
-        TravelFactsDatabaseManager dbMgr = new TravelFactsDatabaseManager(this, "travel_facts_db.db", null, 1);
+        TravelFactsDatabaseManager dbMgr = new TravelFactsDatabaseManager(this, "travel_app_db.db", null, 1);
         dbMgr.dbOpen();
-        int size = dbMgr.determineSizeOfTable();
+       int size = dbMgr.determineSizeOfTable();
 
-        return dbMgr.getRandomFact(size);
+       return dbMgr.getRandomFact(size);
+       // return "";
     }
 
     private void addNewFact(String addedNewFact) {
+        TravelFactsDatabaseManager dbMgr = new TravelFactsDatabaseManager(this, "travel_app_db.db", null, 1);
+        dbMgr.dbOpen();
+        dbMgr.addNewFact(addedNewFact);
 
     }
 
