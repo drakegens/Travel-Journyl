@@ -11,4 +11,5 @@
     <string name="travelFact"> </string>
     <string name="addNewFactBtnTxt">Add Your Own Fact!</string>
     <string name="newRandomFactBtnTxt">New Fact</string>
+    <string name="action_about">About Menu</string>
 </resources>

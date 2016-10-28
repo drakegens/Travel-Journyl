@@ -1,8 +1,6 @@
 package drakegens.traveljournyl;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -43,22 +41,22 @@ public class ViewTravelFactsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //add fact to db
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-                alertDialogBuilder.setTitle(alertDialogTitle);
-                alertDialogBuilder.setMessage(alertDialogMessage);
-                alertDialogBuilder.setView(alertDialogText);
-                alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                         addedNewFact = alertDialogText.getText().toString();
-                        addNewFact(addedNewFact);
-
-                    }
-                });
-                AlertDialog alert = alertDialogBuilder.create();
-                alert.show();
+//                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+//                alertDialogBuilder.setTitle(alertDialogTitle);
+//                alertDialogBuilder.setMessage(alertDialogMessage);
+//                alertDialogBuilder.setView(alertDialogText);
+//                alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//
+//
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                         addedNewFact = alertDialogText.getText().toString();
+//                        addNewFact(addedNewFact);
+//
+//                    }
+//                });
+//                AlertDialog alert = alertDialogBuilder.create();
+//                alert.show();
 
 
 

@@ -31,28 +31,28 @@
     <Button
         android:text="@string/newTravelExperience"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/newTravelExbtn"
-        android:layout_weight="0.25" />
+        android:layout_weight="0.25"
+        android:layout_height="65dp" />
 
     <Button
         android:text="@string/existingTravelExperience"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="65dp"
         android:id="@+id/existTravelExbtn"
         android:layout_weight="0.25" />
 
     <Button
         android:text="@string/viewTravelFacts"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="65dp"
         android:id="@+id/travelFactsbtn"
         android:layout_weight="0.25" />
 
     <Button
         android:text="@string/viewRSSFeed"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="65dp"
         android:id="@+id/RSSFeedbtn"
         android:layout_weight="0.25" />
 </LinearLayout>

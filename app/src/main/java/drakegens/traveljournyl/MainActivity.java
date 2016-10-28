@@ -3,6 +3,7 @@ package drakegens.traveljournyl;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
@@ -17,7 +18,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Toolbar mainMenuToolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        setSupportActionBar(mainMenuToolbar);
         //Wiring up my buttons to go to correct activity onClick
         newTravelExperience = (Button) findViewById(R.id.newTravelExbtn);
         newTravelExperience.setOnClickListener(new View.OnClickListener() {
