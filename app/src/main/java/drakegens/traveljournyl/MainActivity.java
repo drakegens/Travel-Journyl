@@ -25,12 +25,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar mainMenuToolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(mainMenuToolbar);
+
         //Wiring up my buttons to go to correct activity onClick
         newTravelExperience = (Button) findViewById(R.id.newTravelExbtn);
         newTravelExperience.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //launch that activity
+                //launches new travel activity
                 Intent intent = new Intent(MainActivity.this, NewTravelActivity.class);
                 startActivity(intent);
 
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
+
         existingTravelExperience = (Button) findViewById(R.id.existTravelExbtn);
         existingTravelExperience.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,22 +49,26 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
+
         viewTravelFacts = (Button) findViewById(R.id.travelFactsbtn);
         viewTravelFacts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //launch that activity
+                //launches travel facts activity
                 Intent intent = new Intent(MainActivity.this, ViewTravelFactsActivity.class);
                 startActivity(intent);
             }
 
 
         });
+
         viewRSSFeed = (Button) findViewById(R.id.RSSFeedbtn);
         viewRSSFeed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //launch that activity
+                //launches RSS feed activity
+                Intent intent = new Intent(MainActivity.this, ViewRSSFeedActivity.class);
+                startActivity(intent);
             }
 
 
@@ -74,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.action_button_items, menu);
-
         return true;
     }
 

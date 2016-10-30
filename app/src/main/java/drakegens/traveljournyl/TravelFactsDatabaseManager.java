@@ -1,11 +1,11 @@
 package drakegens.traveljournyl;
 
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
@@ -24,6 +24,7 @@ public class TravelFactsDatabaseManager extends SQLiteOpenHelper {
     private static String dbPath = "";
     private static final String dbName = "travel_app_db.db";
     private static final String tblTravelFacts = "travel_facts";
+    private static final String colFact = "fact";
 
 
     private final Context appContext;
@@ -48,35 +49,33 @@ public class TravelFactsDatabaseManager extends SQLiteOpenHelper {
         SQLiteDatabase db;
         db = SQLiteDatabase.openDatabase(dbPath, null, SQLiteDatabase.OPEN_READWRITE);
         if (db != null) {
+            db.close();
             return true;
-        }
-        return false;
-    }
 
-    public void dbOpen() {
-        SQLiteDatabase db;
-        if (!dbExist()) {
-            db = this.getReadableDatabase();
-            copyDBFromAssets();
         } else {
-            try {
-                db = SQLiteDatabase.openDatabase(dbPath + dbName, null, SQLiteDatabase.OPEN_READWRITE);
-                db.setLocale(Locale.getDefault());
-                db.setVersion(1);
-            } catch (SQLiteException e) {
-                Log.e("SQLite Helper", "Database not found");
-            }
+            return false;
         }
     }
 
+    /*
+    This method checks to see if the database needs copied from the assets folder.
+     */
+    public void dbOpen() {
+        //check to see if the database has been copied from the assets folder
+        if (!dbExist()) {
+            copyDBFromAssets();
+        }
+    }
+
+    /*
+    This database is copied from the assets folder if needed.
+     */
     private void copyDBFromAssets() {
-        //from Lab 5
-        InputStream dbInput = null;
-        OutputStream dbOutput = null;
+        //Some of this code is adapted from Lab 5
         try {
-            dbInput = appContext.getAssets().open(dbName);
+            InputStream dbInput = appContext.getAssets().open(dbName);
             Log.d("Debug", "database opened");
-            dbOutput = new FileOutputStream(dbPath);
+            OutputStream dbOutput = new FileOutputStream(dbPath);
 
             byte[] buffer = new byte[1024];
             int length;
@@ -92,16 +91,23 @@ public class TravelFactsDatabaseManager extends SQLiteOpenHelper {
         }
     }
 
+    /*
+    This method determines the size of the table "fact" so the database can be queried for a random fact.
+     */
     public int determineSizeOfTable() {
         SQLiteDatabase db = this.getReadableDatabase();
 
         db.setLocale(Locale.getDefault());
-        int size = (int) DatabaseUtils.queryNumEntries(db, "travel_facts");
+        int size = (int) DatabaseUtils.queryNumEntries(db, tblTravelFacts);
         String strCount = Integer.toString(size);
         Log.d("Debug", strCount);
+        db.close();
         return size;
     }
 
+    /*
+    This method pulls a random fact from the database to display to the user.
+     */
     public String getRandomFact(int size) {
         int minimum = 1;
         int randomNum = minimum + (int) (Math.random() * size);
@@ -109,7 +115,7 @@ public class TravelFactsDatabaseManager extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         cursor.moveToFirst();
-        String randomFact = cursor.getString(cursor.getColumnIndex("fact"));
+        String randomFact = cursor.getString(cursor.getColumnIndex(colFact));
         cursor.close();
         db.close();
 
@@ -117,11 +123,14 @@ public class TravelFactsDatabaseManager extends SQLiteOpenHelper {
 
     }
 
+    /*
+    This method creates a ContentValues object for insertion of facts into the existing database.
+     */
     public void addNewFact(String newFact) {
-String query = "INSERT INTO " + tblTravelFacts + "(fact) VALUES (" + newFact + ")";
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-        cursor.close();
+        ContentValues insertValue = new ContentValues();
+        insertValue.put(colFact, newFact);
+        db.insert(tblTravelFacts, null, insertValue);
         db.close();
     }
 }

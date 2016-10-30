@@ -1,8 +1,12 @@
 package drakegens.traveljournyl;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,9 +18,8 @@ public class ViewTravelFactsActivity extends AppCompatActivity {
     private Button addNewTravelFactbtn;
     private TextView displayTravelFact;
     private final Context context = this;
-    private String alertDialogTitle = "Add New Fact";
-    private String alertDialogMessage = "Enter your fact: ";
-    private EditText alertDialogText;
+
+
     private String addedNewFact;
 
     @Override
@@ -41,24 +44,26 @@ public class ViewTravelFactsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //add fact to db
-//                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-//                alertDialogBuilder.setTitle(alertDialogTitle);
-//                alertDialogBuilder.setMessage(alertDialogMessage);
-//                alertDialogBuilder.setView(alertDialogText);
-//                alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-//
-//
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                         addedNewFact = alertDialogText.getText().toString();
-//                        addNewFact(addedNewFact);
-//
-//                    }
-//                });
-//                AlertDialog alert = alertDialogBuilder.create();
-//                alert.show();
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                alertDialogBuilder.setTitle(R.string.alertDialogAddNewFactTitle);
+                alertDialogBuilder.setMessage(R.string.alertDialogAddNewFactMessage);
+                final EditText alertDialogText = new EditText(context);
+                alertDialogText.setInputType(InputType.TYPE_CLASS_TEXT);
+                alertDialogBuilder.setView(alertDialogText);
+                alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 
 
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        addedNewFact = alertDialogText.getText().toString();
+                        addNewFact(addedNewFact);
+                        dialog.dismiss();
+                        Log.d("Debug", addedNewFact);
+
+                    }
+                });
+                AlertDialog alert = alertDialogBuilder.create();
+                alert.show();
 
 
             }
@@ -70,10 +75,10 @@ public class ViewTravelFactsActivity extends AppCompatActivity {
     private String generateRandomFact() {
         TravelFactsDatabaseManager dbMgr = new TravelFactsDatabaseManager(this, "travel_app_db.db", null, 1);
         dbMgr.dbOpen();
-       int size = dbMgr.determineSizeOfTable();
+        int size = dbMgr.determineSizeOfTable();
 
-       return dbMgr.getRandomFact(size);
-       // return "";
+        return dbMgr.getRandomFact(size);
+
     }
 
     private void addNewFact(String addedNewFact) {
