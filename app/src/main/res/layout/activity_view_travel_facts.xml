@@ -4,50 +4,50 @@
     android:id="@+id/activity_view_travel_facts"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="drakegens.traveljournyl.ViewTravelFactsActivity"
-    android:orientation="vertical"
-    android:weightSum="1">
+    android:weightSum="1"
+    tools:context="drakegens.traveljournyl.ViewTravelFactsActivity">
 
     <TextView
-        android:text="@string/travelFactHeader"
+        android:id="@+id/travelFactHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/travelFactHeader"
-        android:textSize="30sp"
+        android:layout_marginTop="11dp"
         android:fontFamily="casual"
+        android:text="@string/travelFactHeader"
         android:textAlignment="center"
-        android:textStyle="normal|bold"
-        android:layout_marginTop="11dp" />
+        android:textSize="30sp"
+        android:textStyle="normal|bold" />
 
     <TextView
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/displayFact"
-        android:padding="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
         android:layout_marginTop="25dp"
-        android:layout_weight="0.05" />
+        android:layout_weight="0.05"
+        android:padding="30dp" />
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop= "200dp">
+        android:layout_marginTop="200dp"
+        android:orientation="horizontal">
 
-    <Button
-        android:text="@string/addNewFactBtnTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/addNewFactbtn" />
+        <Button
+            android:id="@+id/addNewFactbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/addNewFactBtnTxt" />
 
-    <Button
-        android:text="@string/newRandomFactBtnTxt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/newRandomFactbtn" />
+        <Button
+            android:id="@+id/newRandomFactbtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/newRandomFactBtnTxt" />
     </LinearLayout>
 </LinearLayout>

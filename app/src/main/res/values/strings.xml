@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Travel Journyl</string>
     <string name="newTravelHeader">Where have you been?</string>
+    <string name="newTravelDatesTravelled">Dates Travelled:</string>
     <string name="locationHint">Location</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="newTravelExperience">New Travel Experience</string>

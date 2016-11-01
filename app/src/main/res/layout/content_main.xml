@@ -21,7 +21,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_weight="0.25"
-        android:text="@string/newTravelExperience" />
+        android:text="@string/newTravelExperience"
+        android:layout_marginTop="25dp"/>
 
     <Button
         android:id="@+id/existTravelExbtn"

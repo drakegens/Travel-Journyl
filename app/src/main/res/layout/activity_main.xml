@@ -13,7 +13,7 @@
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:layout_height="45dp"
+        android:layout_height="40dp"
         android:visibility="visible" />
 
     <include layout="@layout/content_main"
