@@ -13,6 +13,7 @@
     <string name="addNewFactBtnTxt">Add Your Own Fact!</string>
     <string name="newRandomFactBtnTxt">New Fact</string>
     <string name="action_about">About Menu</string>
+    <string name="action_drawing">Drawing Menu</string>
     <string name="alertDialogAboutTitle">About this Application</string>
     <string name="alertDialogAboutMessage">This application is intended to be used as a personal travel journal.
     You can record new travel experiences, view existing travel experiences, view interesting travel facts from

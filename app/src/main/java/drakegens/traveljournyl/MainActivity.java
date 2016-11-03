@@ -103,6 +103,10 @@ public class MainActivity extends AppCompatActivity {
                 AlertDialog alert = alertDialogBuilder.create();
                 alert.show();
                 return true;
+            case R.id.action_draw:
+                Intent intent = new Intent(MainActivity.this, DrawingActivity.class);
+                startActivity(intent);
+                return true;
 
 
             default:
