@@ -22,8 +22,7 @@ import javax.xml.parsers.SAXParserFactory;
 public class ViewRSSFeedActivity extends AppCompatActivity {
 
     private String rssResult = "";
-    boolean item = false;
-    // private TextView tvRSSResult;
+    private boolean item = false;
 
 
     @Override
@@ -33,22 +32,30 @@ public class ViewRSSFeedActivity extends AppCompatActivity {
 
         AsyncRSSFeedParser arfp = new AsyncRSSFeedParser();
         arfp.execute();
-        //  tvRSSResult.setText(rssResult);
+
 
     }
 
+    /**
+     * Inner class that creates a seperate thread in order to handle RSS feed
+     */
     private class AsyncRSSFeedParser extends AsyncTask<String, String, String> {
 
         private static final String urlString = "http://feeds.bbci.co.uk/news/world/rss.xml";
         TextView tvRSSResult = (TextView) findViewById(R.id.RSSfeed);
 
-
+        /*
+        Happens before main thread
+         */
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
             tvRSSResult.setText("Loading...");
         }
 
+        /*
+        This method uses an XMLReader object to parse the RSS feed from specified URL
+         */
         @Override
         protected String doInBackground(String... params) {
 
@@ -86,7 +93,9 @@ public class ViewRSSFeedActivity extends AppCompatActivity {
         }
     }
 
-
+    /*
+    Inner class used for formatting output from the RSS feed
+     */
     private class RSSHandler extends DefaultHandler {
 
         public void startElement(String uri, String localName, String qName,
@@ -106,9 +115,9 @@ public class ViewRSSFeedActivity extends AppCompatActivity {
 
         public void characters(char[] ch, int start, int length)
                 throws SAXException {
-            String cdata = new String(ch, start, length);
+            String characterData = new String(ch, start, length);
             if (item == true)
-                rssResult = rssResult + (cdata.trim()).replaceAll("\\s+", " ") + "\t" + "\n";
+                rssResult = rssResult + (characterData.trim()).replaceAll("\\s+", " ") + "\t" + "\n";
 
         }
 

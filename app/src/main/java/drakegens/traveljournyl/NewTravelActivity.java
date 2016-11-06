@@ -9,12 +9,15 @@ import android.widget.EditText;
 
 import java.util.Calendar;
 
+/**
+ * This activity class handles user input for a new travel experience, and then stores it in the database.
+ */
 public class NewTravelActivity extends AppCompatActivity {
     //instance variables
-    //TextView header;
-    EditText location;
-    EditText fromDate;
-    EditText toDate;
+
+    private EditText location;
+    private EditText fromDate;
+    private EditText toDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +27,9 @@ public class NewTravelActivity extends AppCompatActivity {
         //header = (TextView) findViewById(R.id.header);
         location = (EditText) findViewById(R.id.location);
         fromDate = (EditText) findViewById(R.id.etFromDate);
-        fromDate.setOnClickListener(new View.OnClickListener()
-        {
+        fromDate.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 Calendar c = Calendar.getInstance();
                 int mYear = c.get(Calendar.YEAR);
                 int mMonth = c.get(Calendar.MONTH);
@@ -62,8 +63,6 @@ public class NewTravelActivity extends AppCompatActivity {
 
         }
     }
-
-
 
 
 }

@@ -18,8 +18,6 @@ public class ViewTravelFactsActivity extends AppCompatActivity {
     private Button addNewTravelFactbtn;
     private TextView displayTravelFact;
     private final Context context = this;
-
-
     private String addedNewFact;
 
     @Override
@@ -73,16 +71,15 @@ public class ViewTravelFactsActivity extends AppCompatActivity {
     }
 
     private String generateRandomFact() {
-        TravelFactsDatabaseManager dbMgr = new TravelFactsDatabaseManager(this, "travel_app_db.db", null, 1);
+        TravelAppDatabaseManager dbMgr = new TravelAppDatabaseManager(this, "travel_app_db.db", null, 1);
         dbMgr.dbOpen();
         int size = dbMgr.determineSizeOfTable();
-
         return dbMgr.getRandomFact(size);
 
     }
 
     private void addNewFact(String addedNewFact) {
-        TravelFactsDatabaseManager dbMgr = new TravelFactsDatabaseManager(this, "travel_app_db.db", null, 1);
+        TravelAppDatabaseManager dbMgr = new TravelAppDatabaseManager(this, "travel_app_db.db", null, 1);
         dbMgr.dbOpen();
         dbMgr.addNewFact(addedNewFact);
 

@@ -3,13 +3,16 @@ package drakegens.traveljournyl;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+/**
+ * Activity launched to display the canvas upon which I draw a graph.
+ * Drake Gens
+ */
 public class DrawingActivity extends AppCompatActivity {
-    private CanvasView canvasView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drawing);
-        canvasView = (CanvasView) findViewById(R.id.canvas);
+        setContentView(new DrawingView(this));
     }
 }

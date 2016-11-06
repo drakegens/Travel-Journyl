@@ -17,9 +17,10 @@ import java.util.Locale;
 
 /**
  * Created by Drake on 10/23/2016.
+ * This class handles database activities used in the application, specifically for the travel facts and the travel experiences stored by the user.
  */
 
-public class TravelFactsDatabaseManager extends SQLiteOpenHelper {
+public class TravelAppDatabaseManager extends SQLiteOpenHelper {
 
     private static String dbPath = "";
     private static final String dbName = "travel_app_db.db";
@@ -29,7 +30,7 @@ public class TravelFactsDatabaseManager extends SQLiteOpenHelper {
 
     private final Context appContext;
 
-    public TravelFactsDatabaseManager(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public TravelAppDatabaseManager(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
         this.appContext = context;
         dbPath = appContext.getDatabasePath(dbName).getPath();

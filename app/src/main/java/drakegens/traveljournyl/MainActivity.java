@@ -11,19 +11,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+
+/**
+ * Drake Gens
+ * Main Activity launched when the application is initially opened. Serves as the main menu
+ */
 public class MainActivity extends AppCompatActivity {
     //instance variables
-    Button newTravelExperience;
-    Button existingTravelExperience;
-    Button viewTravelFacts;
-    Button viewRSSFeed;
+    private Button newTravelExperience;
+    private Button existingTravelExperience;
+    private Button viewTravelFacts;
+    private Button viewRSSFeed;
+    private Toolbar mainMenuToolbar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar mainMenuToolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        mainMenuToolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(mainMenuToolbar);
 
         //Wiring up my buttons to go to correct activity onClick
@@ -76,13 +82,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /*
+    This method adds the buttons to the toolbar at the top of the activity.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.action_button_items, menu);
         return true;
     }
 
+    /*
+    This method handles the toolbar's buttons, launching the appropriate actions depending on user interaction.
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -104,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 alert.show();
                 return true;
             case R.id.action_draw:
+                //The canvas is displayed and a graph is drawn on it
                 Intent intent = new Intent(MainActivity.this, DrawingActivity.class);
                 startActivity(intent);
                 return true;
@@ -111,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
 
             default:
                 // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
 
         }

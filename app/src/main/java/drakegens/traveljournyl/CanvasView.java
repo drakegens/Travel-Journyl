@@ -22,22 +22,21 @@ public class CanvasView extends SurfaceView {
         paint = new Paint(Color.BLACK);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(25);
-        bitmap = Bitmap.createBitmap(400,600,Bitmap.Config.ARGB_8888);
+        bitmap = Bitmap.createBitmap(400, 600, Bitmap.Config.ARGB_8888);
         canvas = new Canvas(bitmap);
-       // onDraw(canvas);
+        draw(canvas);
     }
 
 
-
-    @Override
-    protected void onDraw(Canvas canvas) {
+   // @Override
+    public void draw(Canvas canvas) {
         // TODO Auto-generated method stub
-        super.onDraw(canvas);
+        //super.onDraw(canvas);
         int x = getWidth();
         int y = getHeight();
         int radius;
         radius = 100;
-       // Paint paint = new Paint();
+        // Paint paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.WHITE);
         canvas.drawPaint(paint);
