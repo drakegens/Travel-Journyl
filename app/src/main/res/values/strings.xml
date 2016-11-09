@@ -23,4 +23,7 @@
     <string name="alertDialogAddNewFactTitle">Add New Fact</string>
     <string name="alertDialogAddNewFactMessage">Enter your fact: </string>
     <string name="RSSFeedtitle">World News RSS Feed from BBC</string>
+    <string name="experienceDetailsHeader">Write about your experience</string>
+    <string name="exitWithoutSavingbtn">Exit Without Saving</string>
+    <string name="savingbtn">Save</string>
 </resources>

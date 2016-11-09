@@ -25,8 +25,12 @@ public class TravelAppDatabaseManager extends SQLiteOpenHelper {
     private static String dbPath = "";
     private static final String dbName = "travel_app_db.db";
     private static final String tblTravelFacts = "travel_facts";
+    private static final String tblTravelExperiences = "experience_information";
     private static final String colFact = "fact";
-
+    private static final String colLocation = "location";
+    private static final String colFromDate = "from_date";
+    private static final String colToDate = "to_date";
+    private static final String colDetails = "details";
 
     private final Context appContext;
 
@@ -43,7 +47,7 @@ public class TravelAppDatabaseManager extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-//who cares for now
+
     }
 
     private boolean dbExist() {
@@ -129,9 +133,24 @@ public class TravelAppDatabaseManager extends SQLiteOpenHelper {
      */
     public void addNewFact(String newFact) {
         SQLiteDatabase db = this.getWritableDatabase();
+        //special container used for entering database values
         ContentValues insertValue = new ContentValues();
         insertValue.put(colFact, newFact);
         db.insert(tblTravelFacts, null, insertValue);
+        db.close();
+    }
+
+    /*
+    This method creates a ContentValues object for insertion of a new travel experience into the database.
+     */
+    public void addNewExperience(String location, String fromDate, String toDate, String details) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(colLocation, location);
+        contentValues.put(colFromDate, fromDate);
+        contentValues.put(colToDate, toDate);
+        contentValues.put(colDetails, details);
+        db.insert(tblTravelExperiences, null, contentValues);
         db.close();
     }
 }
