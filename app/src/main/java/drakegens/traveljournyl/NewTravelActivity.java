@@ -1,7 +1,9 @@
 package drakegens.traveljournyl;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +23,7 @@ public class NewTravelActivity extends AppCompatActivity {
     private EditText toDate;
     private EditText details;
     private Button exitWithoutSavebtn;
+    private Button savebtn;
 
 
     @Override
@@ -71,25 +74,28 @@ public class NewTravelActivity extends AppCompatActivity {
                 //TODO: might have to add more code here, closing db or something
             }
         });
+        savebtn = (Button) findViewById(R.id.savebtn);
+        savebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNewExperience();
+
+            }
+        });
     }
 
-
+    /*
+    Listeners for date set dialogs.
+     */
     class FromDateSetListener implements DatePickerDialog.OnDateSetListener {
 
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {
-            // getCalender();
-//            int mYear = year;
-//            int mMonth = monthOfYear;
-//            int mDay = dayOfMonth;
             fromDate.setText(new StringBuilder()
                     // Month is 0 based so add 1
                     .append(monthOfYear + 1).append("/").append(dayOfMonth).append("/")
                     .append(year).append(" "));
-            //System.out.println(v.getText().toString());
-
-
         }
     }
 
@@ -98,26 +104,75 @@ public class NewTravelActivity extends AppCompatActivity {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {
-
-            // getCalender();
-//            int mYear = year;
-//            int mMonth = monthOfYear;
-//            int mDay = dayOfMonth;
             toDate.setText(new StringBuilder()
                     // Month is 0 based so add 1
                     .append(monthOfYear + 1).append("/").append(dayOfMonth).append("/")
                     .append(year).append(" "));
-            //System.out.println(v.getText().toString());
-
-
         }
     }
 
-    private boolean checkIfFilledIn() {
-        if (location.getText() != null && fromDate.getText() != null && toDate.getText() != null && details.getText() != null) {
+    /*
+    This method determines whether ALL editTexts have been filled in.
+     */
+    private boolean isFilledIn() {
+        if (isEditTextFilledIn(location) && isEditTextFilledIn(fromDate) && isEditTextFilledIn(toDate) && isEditTextFilledIn(details)) {
             return true;
         } else {
+
             return false;
+        }
+    }
+
+    /*
+    This method checks whether the user has entered text into a field.
+     */
+    private boolean isEditTextFilledIn(EditText et) {
+        return et.getText().toString().trim().length() > 0;
+    }
+
+    /*
+    This method adds a new travel experience to the database and then displays a dialog when finished.
+     */
+    private void addNewExperience() {
+
+        if (isFilledIn()) {
+            TravelAppDatabaseManager dbMgr = new TravelAppDatabaseManager(this, "travel_app_db.db", null, 1);
+            dbMgr.dbOpen();
+            dbMgr.addNewExperience(location.getText().toString(), fromDate.getText().toString(), toDate.getText().toString(), details.getText().toString());
+
+            AlertDialog.Builder successAlertDialogBuilder = new AlertDialog.Builder(this);
+            successAlertDialogBuilder.setTitle(R.string.alertDialogSuccessTravelAddedHeader);
+            successAlertDialogBuilder.setMessage(R.string.alertDialogSuccessTravelAddedMessage);
+            successAlertDialogBuilder.setPositiveButton("Ok",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog,
+                                            int which) {
+                            dialog.dismiss();
+                            finish();
+                        }
+                    });
+
+            AlertDialog alertDialog = successAlertDialogBuilder.create();
+            alertDialog.show();
+
+
+        } else {
+            //display message prompting user to fill in all details about the travel experience
+            AlertDialog.Builder failureAlertDialogBuilder = new AlertDialog.Builder(this);
+            failureAlertDialogBuilder.setTitle(R.string.alertDialogNewTravelHeader);
+            failureAlertDialogBuilder.setMessage(R.string.alertDialogNewTravelMessage);
+            failureAlertDialogBuilder.setPositiveButton("Ok",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog,
+                                            int which) {
+                            dialog.dismiss();
+                        }
+                    });
+
+            AlertDialog alertDialog = failureAlertDialogBuilder.create();
+            alertDialog.show();
         }
     }
 

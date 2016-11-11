@@ -42,7 +42,7 @@ public class TravelAppDatabaseManager extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-//database already exists
+        //database already exists
     }
 
     @Override
@@ -50,10 +50,13 @@ public class TravelAppDatabaseManager extends SQLiteOpenHelper {
 
     }
 
+    /*
+    This method checks if the database exists.
+     */
     private boolean dbExist() {
         SQLiteDatabase db;
-        db = SQLiteDatabase.openDatabase(dbPath, null, SQLiteDatabase.OPEN_READWRITE);
-        if (db != null) {
+        db = SQLiteDatabase.openDatabase(dbPath, null, SQLiteDatabase.CREATE_IF_NECESSARY);
+        if (checkDBForData()) {
             db.close();
             return true;
 
@@ -61,6 +64,7 @@ public class TravelAppDatabaseManager extends SQLiteOpenHelper {
             return false;
         }
     }
+
 
     /*
     This method checks to see if the database needs copied from the assets folder.
@@ -101,13 +105,30 @@ public class TravelAppDatabaseManager extends SQLiteOpenHelper {
      */
     public int determineSizeOfTable() {
         SQLiteDatabase db = this.getReadableDatabase();
-
         db.setLocale(Locale.getDefault());
         int size = (int) DatabaseUtils.queryNumEntries(db, tblTravelFacts);
         String strCount = Integer.toString(size);
         Log.d("Debug", strCount);
         db.close();
         return size;
+    }
+
+    /*
+    This method  checks to see if the database is empty.
+     */
+    private boolean checkDBForData() {
+        boolean tableExists = false;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        try {
+            cursor = db.query(tblTravelFacts, null,
+                    null, null, null, null, null);
+            tableExists = true;
+
+        } catch (Exception e) {
+            Log.d("Debug", "table doesn't exist");
+        }
+        return tableExists;
     }
 
     /*

@@ -26,4 +26,8 @@
     <string name="experienceDetailsHeader">Write about your experience</string>
     <string name="exitWithoutSavingbtn">Exit Without Saving</string>
     <string name="savingbtn">Save</string>
+    <string name="alertDialogNewTravelHeader">Error</string>
+    <string name="alertDialogNewTravelMessage">Please fill in all details!</string>
+    <string name="alertDialogSuccessTravelAddedHeader">Success!</string>
+    <string name="alertDialogSuccessTravelAddedMessage">Your experience has been successfully added.</string>
 </resources>

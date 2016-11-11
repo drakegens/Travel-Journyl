@@ -103,7 +103,7 @@
                     android:text="@string/exitWithoutSavingbtn" />
 
                 <Button
-                    android:id="@+id/nsavebtn"
+                    android:id="@+id/savebtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/savingbtn" />

@@ -30,6 +30,12 @@ public class DrawingView extends View {
         //x and y axes
         canvas.drawLine(50,50,750,50,paint);
         canvas.drawLine(50,50,50,1000,paint);
+        canvas.drawLine(100,100,150,100,paint);
+        canvas.drawLine(150,100,600,800,paint);
+        float x = 50;
+        float y = 1100;
+        canvas.drawText("Your enthusiasm for travel severely decreases as you age!",x,y,paint);
+
        // canvas.drawCircle(200, 200, 100, paint);
     }
 

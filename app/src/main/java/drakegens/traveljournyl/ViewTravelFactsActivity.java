@@ -20,6 +20,7 @@ public class ViewTravelFactsActivity extends AppCompatActivity {
     private final Context context = this;
     private String addedNewFact;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +34,6 @@ public class ViewTravelFactsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //new Random fact
-
                 displayTravelFact.setText(generateRandomFact());
             }
         });
@@ -70,6 +70,9 @@ public class ViewTravelFactsActivity extends AppCompatActivity {
 
     }
 
+    /*
+    This method returns a random fact from the existing database.
+     */
     private String generateRandomFact() {
         TravelAppDatabaseManager dbMgr = new TravelAppDatabaseManager(this, "travel_app_db.db", null, 1);
         dbMgr.dbOpen();
@@ -78,6 +81,9 @@ public class ViewTravelFactsActivity extends AppCompatActivity {
 
     }
 
+    /*
+    This method adds a new fact that is passed into the database.
+     */
     private void addNewFact(String addedNewFact) {
         TravelAppDatabaseManager dbMgr = new TravelAppDatabaseManager(this, "travel_app_db.db", null, 1);
         dbMgr.dbOpen();
