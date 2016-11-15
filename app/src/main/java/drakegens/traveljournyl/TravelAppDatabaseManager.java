@@ -174,4 +174,13 @@ public class TravelAppDatabaseManager extends SQLiteOpenHelper {
         db.insert(tblTravelExperiences, null, contentValues);
         db.close();
     }
+
+    public Cursor createCursorForAdaptor(){
+        String query = "SELECT " + "pk AS _id," + colLocation + "," + colFromDate + "," + colToDate + " FROM " + tblTravelExperiences; // No trailing ';'
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+       // db.close();
+        return cursor;
+
+    }
 }
