@@ -30,4 +30,5 @@
     <string name="alertDialogNewTravelMessage">Please fill in all details!</string>
     <string name="alertDialogSuccessTravelAddedHeader">Success!</string>
     <string name="alertDialogSuccessTravelAddedMessage">Your experience has been successfully added.</string>
+    <string name="headerForExistingTravelExperiences">View Existing Travel Experiences!</string>
 </resources>

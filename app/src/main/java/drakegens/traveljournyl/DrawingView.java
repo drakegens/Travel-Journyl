@@ -34,6 +34,7 @@ public class DrawingView extends View {
         canvas.drawLine(150,100,600,800,paint);
         float x = 50;
         float y = 1100;
+        paint.setStrokeWidth(18);
         canvas.drawText("Your enthusiasm for travel severely decreases as you age!",x,y,paint);
 
        // canvas.drawCircle(200, 200, 100, paint);

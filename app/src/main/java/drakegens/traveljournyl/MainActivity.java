@@ -17,7 +17,7 @@ import android.widget.Button;
  * Main Activity launched when the application is initially opened. Serves as the main menu
  */
 public class MainActivity extends AppCompatActivity {
-    //instance variables
+
     private Button newTravelExperience;
     private Button existingTravelExperience;
     private Button viewTravelFacts;
@@ -50,7 +50,9 @@ public class MainActivity extends AppCompatActivity {
         existingTravelExperience.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //launch that activity
+                //launch View Travel experiences activity
+                Intent intent = new Intent(MainActivity.this, ViewTravelExperiencesActivity.class);
+                startActivity(intent);
             }
 
 
