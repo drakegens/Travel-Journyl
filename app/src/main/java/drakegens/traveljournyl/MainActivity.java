@@ -118,10 +118,13 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.action_draw:
                 //The canvas is displayed and a graph is drawn on it
-                Intent intent = new Intent(MainActivity.this, DrawingActivity.class);
-                startActivity(intent);
+                Intent drawingIntent = new Intent(MainActivity.this, DrawingActivity.class);
+                startActivity(drawingIntent);
                 return true;
+            case R.id.action_maps:
 
+                Intent mapsIntent = new Intent(MainActivity.this, MapsActivity.class);
+                startActivity(mapsIntent);
 
             default:
                 // If we got here, the user's action was not recognized.

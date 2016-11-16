@@ -11,5 +11,10 @@
         android:icon="@drawable/ic_action_drawing"
         android:title="@string/action_drawing"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/action_maps"
+        android:icon="@drawable/ic_action_maps"
+        android:title="@string/action_drawing"
+        app:showAsAction="always" />
 
 </menu>

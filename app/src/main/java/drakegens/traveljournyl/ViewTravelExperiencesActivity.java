@@ -1,16 +1,25 @@
 package drakegens.traveljournyl;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.CursorAdapter;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class ViewTravelExperiencesActivity extends AppCompatActivity {
 
     private ListView existingTravelExperiencesList;
-    private CursorAdapter cursorAdapter;
+    private CustomCursorAdapter cursorAdapter;
     private Cursor cursor;
+    private static final String colLocation = "location";
+    private static final String colFromDate = "from_date";
+    private static final String colToDate = "to_date";
+    private static final String colDetails = "details";
+    private final Context context = this.getApplicationContext();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +30,34 @@ public class ViewTravelExperiencesActivity extends AppCompatActivity {
         TravelAppDatabaseManager dbMgr = new TravelAppDatabaseManager(this, "travel_app_db.db", null, 1);
         dbMgr.dbOpen();
 
-        cursor = dbMgr.createCursorForAdaptor();
+        cursor = dbMgr.createCursorForAdapter();
 
-        CustomCursorAdapter cursorAdapter = new CustomCursorAdapter(this,R.layout.row, cursor, 0);
+        cursorAdapter = new CustomCursorAdapter(this, R.layout.row, cursor, 0);
 
         existingTravelExperiencesList.setAdapter(cursorAdapter);
 
+
+        existingTravelExperiencesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                cursor.moveToPosition(position);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                alertDialogBuilder.setTitle(cursor.getString(cursor.getColumnIndex(colLocation)) + "\n" + cursor.getString(cursor.getColumnIndex(colFromDate)) + " - " + cursor.getString(cursor.getColumnIndex(colToDate)));
+                alertDialogBuilder.setMessage(cursor.getString(cursor.getColumnIndex(colDetails)));
+                alertDialogBuilder.setPositiveButton("Ok",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                dialog.dismiss();
+                            }
+                        });
+
+                AlertDialog alert = alertDialogBuilder.create();
+                alert.show();
+
+            }
+        });
     }
 }

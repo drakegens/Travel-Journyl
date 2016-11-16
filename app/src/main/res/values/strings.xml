@@ -14,6 +14,7 @@
     <string name="newRandomFactBtnTxt">New Fact</string>
     <string name="action_about">About Menu</string>
     <string name="action_drawing">Drawing Menu</string>
+    <string name="action_maps">Maps Menu</string>
     <string name="alertDialogAboutTitle">About this Application</string>
     <string name="alertDialogAboutMessage">This application is intended to be used as a personal travel journal.
     You can record new travel experiences, view existing travel experiences, view interesting travel facts from
@@ -31,4 +32,5 @@
     <string name="alertDialogSuccessTravelAddedHeader">Success!</string>
     <string name="alertDialogSuccessTravelAddedMessage">Your experience has been successfully added.</string>
     <string name="headerForExistingTravelExperiences">View Existing Travel Experiences!</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

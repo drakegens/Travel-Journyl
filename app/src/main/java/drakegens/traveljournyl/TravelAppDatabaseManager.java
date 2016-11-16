@@ -175,11 +175,15 @@ public class TravelAppDatabaseManager extends SQLiteOpenHelper {
         db.close();
     }
 
-    public Cursor createCursorForAdaptor(){
-        String query = "SELECT " + "pk AS _id," + colLocation + "," + colFromDate + "," + colToDate + " FROM " + tblTravelExperiences; // No trailing ';'
+
+    /*
+    This method creates a cursor used for the custom cursor adaptor used in the ListView for displaying the existing travel experiences.
+     */
+    public Cursor createCursorForAdapter() {
+        String query = "SELECT " + "pk AS _id," + colLocation + "," + colFromDate + "," + colToDate +  "," + colDetails + " FROM " + tblTravelExperiences;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
-       // db.close();
+        // db.close(); //why can't i close this
         return cursor;
 
     }
