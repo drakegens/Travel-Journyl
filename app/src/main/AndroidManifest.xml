@@ -21,18 +21,30 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
-        <activity android:name=".NewTravelActivity" />
-        <activity android:name=".ViewTravelFactsActivity" />
-        <activity android:name=".ViewRSSFeedActivity" />
-        <activity android:name=".DrawingActivity" />
-        <activity android:name=".ViewTravelExperiencesActivity" />
+        <activity
+            android:name=".NewTravelActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ViewTravelFactsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ViewRSSFeedActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DrawingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ViewTravelExperiencesActivity"
+            android:screenOrientation="portrait" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -47,7 +59,8 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps"
+            android:screenOrientation="portrait"></activity>
 
         android:name="android.support.multidex.MultiDexApplication">
     </application>

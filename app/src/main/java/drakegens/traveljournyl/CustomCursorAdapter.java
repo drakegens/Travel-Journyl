@@ -7,6 +7,7 @@ import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
 
 /**
+ * This class uses the cursor retrived from the database manager to add appropriate data to the ListView in the view experiences activity.
  * Created by Drake on 11/15/2016.
  */
 

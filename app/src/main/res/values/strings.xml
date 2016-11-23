@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Travel Journyl</string>
     <string name="newTravelHeader">Where have you been?</string>
-    <string name="newTravelDatesTravelled">Dates Travelled:</string>
+    <string name="newTravelDatesTravelled">Dates Travelled: </string>
     <string name="locationHint">Location</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="newTravelExperience">New Travel Experience</string>
@@ -9,7 +9,6 @@
     <string name="viewTravelFacts">View Travel Facts</string>
     <string name="viewRSSFeed">View RSS Feed</string>
     <string name="travelFactHeader">Travel Fact of the Day!</string>
-    <string name="travelFact"> </string>
     <string name="addNewFactBtnTxt">Add Your Own Fact!</string>
     <string name="newRandomFactBtnTxt">New Fact</string>
     <string name="action_about">About Menu</string>
@@ -19,7 +18,7 @@
     <string name="alertDialogAboutMessage">This application is intended to be used as a personal travel journal.
     You can record new travel experiences, view existing travel experiences, view interesting travel facts from
     a database of my creation, and view an RSS feed about world news. You can also add your own travel facts to the
-        database as you learn from your travels!If you would like to report any bugs or comment on
+        database as you learn from your travels! If you would like to report any bugs or comment on
     my application, you can contact me at drake.gens@gmail.com</string>
     <string name="alertDialogAddNewFactTitle">Add New Fact</string>
     <string name="alertDialogAddNewFactMessage">Enter your fact: </string>
@@ -27,7 +26,7 @@
     <string name="experienceDetailsHeader">Write about your experience</string>
     <string name="exitWithoutSavingbtn">Exit Without Saving</string>
     <string name="savingbtn">Save</string>
-    <string name="alertDialogNewTravelHeader">Error</string>
+    <string name="errorNotification">Error</string>
     <string name="alertDialogNewTravelMessage">Please fill in all details!</string>
     <string name="alertDialogSuccessTravelAddedHeader">Success!</string>
     <string name="alertDialogSuccessTravelAddedMessage">Your experience has been successfully added.</string>

@@ -175,6 +175,10 @@ public class TravelAppDatabaseManager extends SQLiteOpenHelper {
         db.close();
     }
 
+    public boolean deleteExperience(int id){
+        return true;
+    }
+
 
     /*
     This method creates a cursor used for the custom cursor adaptor used in the ListView for displaying the existing travel experiences.

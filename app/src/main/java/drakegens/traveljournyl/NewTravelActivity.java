@@ -160,7 +160,7 @@ public class NewTravelActivity extends AppCompatActivity {
         } else {
             //display message prompting user to fill in all details about the travel experience
             AlertDialog.Builder failureAlertDialogBuilder = new AlertDialog.Builder(this);
-            failureAlertDialogBuilder.setTitle(R.string.alertDialogNewTravelHeader);
+            failureAlertDialogBuilder.setTitle(R.string.errorNotification);
             failureAlertDialogBuilder.setMessage(R.string.alertDialogNewTravelMessage);
             failureAlertDialogBuilder.setPositiveButton("Ok",
                     new DialogInterface.OnClickListener() {
