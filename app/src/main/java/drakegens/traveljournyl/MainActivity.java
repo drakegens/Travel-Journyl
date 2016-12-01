@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
                     //permission granted
                 } else {
 
-                    // permission denied, boo! Disable the
+                    // permission denied, disable the
                     // functionality that depends on this permission.
                     //This is handled when the maps action button is pressed.
                 }

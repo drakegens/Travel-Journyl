@@ -17,7 +17,6 @@ import java.util.Calendar;
  * This activity class handles user input for a new travel experience, and then stores it in the database.
  */
 public class NewTravelActivity extends AppCompatActivity {
-    //instance variables
 
     private EditText location;
     private EditText fromDate;
@@ -70,7 +69,6 @@ public class NewTravelActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                //TODO: might have to add more code here, closing db or something
             }
         });
         savebtn = (Button) findViewById(R.id.savebtn);
@@ -78,7 +76,6 @@ public class NewTravelActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addNewExperience();
-
             }
         });
     }
@@ -125,8 +122,8 @@ public class NewTravelActivity extends AppCompatActivity {
     /*
     This method checks whether the user has entered text into a field.
      */
-    private boolean isEditTextFilledIn(EditText et) {
-        return et.getText().toString().trim().length() > 0;
+    private boolean isEditTextFilledIn(EditText editText) {
+        return editText.getText().toString().trim().length() > 0;
     }
 
     /*
