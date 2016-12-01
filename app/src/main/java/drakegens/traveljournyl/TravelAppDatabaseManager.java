@@ -16,11 +16,11 @@ import java.io.OutputStream;
 import java.util.Locale;
 
 /**
- * Created by Drake on 10/23/2016.
+ * Drake Gens
  * This class handles database activities used in the application, specifically for the travel facts and the travel experiences stored by the user.
  */
 
-public class TravelAppDatabaseManager extends SQLiteOpenHelper {
+class TravelAppDatabaseManager extends SQLiteOpenHelper {
 
     private static String dbPath = "";
     private static final String dbName = "travel_app_db.db";
@@ -47,7 +47,7 @@ public class TravelAppDatabaseManager extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        //not going to change versions in this app
     }
 
     /*
@@ -55,9 +55,13 @@ public class TravelAppDatabaseManager extends SQLiteOpenHelper {
      */
     private boolean dbExist() {
         SQLiteDatabase db;
-        db = SQLiteDatabase.openDatabase(dbPath, null, SQLiteDatabase.CREATE_IF_NECESSARY);
-        if (checkDBForData()) {
+        try {
+            db = SQLiteDatabase.openDatabase(dbPath, null, SQLiteDatabase.CREATE_IF_NECESSARY);
             db.close();
+        } catch (Exception e) {
+            copyDBFromAssets();
+        }
+        if (checkDBForData()) {
             return true;
 
         } else {
@@ -83,20 +87,20 @@ public class TravelAppDatabaseManager extends SQLiteOpenHelper {
         //Some of this code is adapted from Lab 5
         try {
             InputStream dbInput = appContext.getAssets().open(dbName);
-            Log.d("Debug", "database opened");
+            Log.d("Debug", "Database opened");
             OutputStream dbOutput = new FileOutputStream(dbPath);
 
             byte[] buffer = new byte[1024];
             int length;
             while ((length = dbInput.read(buffer)) > 0) {
                 dbOutput.write(buffer, 0, length);
-                Log.d("Debug", "database copying...");
+                Log.d("Debug", "Database copying...");
             }
             dbOutput.flush();
             dbOutput.close();
             dbInput.close();
         } catch (IOException e) {
-            Log.e("IOException", "Problems copying DB");
+            Log.e("IOException", "Problems copying database");
         }
     }
 
@@ -107,14 +111,14 @@ public class TravelAppDatabaseManager extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         db.setLocale(Locale.getDefault());
         int size = (int) DatabaseUtils.queryNumEntries(db, tblTravelFacts);
-        String strCount = Integer.toString(size);
-        Log.d("Debug", strCount);
+        // String strCount = Integer.toString(size);
+        // Log.d("Debug", strCount);
         db.close();
         return size;
     }
 
     /*
-    This method  checks to see if the database is empty.
+    This method checks to see if the database is empty.
      */
     private boolean checkDBForData() {
         boolean tableExists = false;
@@ -124,6 +128,7 @@ public class TravelAppDatabaseManager extends SQLiteOpenHelper {
             cursor = db.query(tblTravelFacts, null,
                     null, null, null, null, null);
             tableExists = true;
+            db.close();
 
         } catch (Exception e) {
             Log.d("Debug", "table doesn't exist");
@@ -175,8 +180,16 @@ public class TravelAppDatabaseManager extends SQLiteOpenHelper {
         db.close();
     }
 
-    public boolean deleteExperience(int id){
-        return true;
+    /*
+    This method deletes a travel experience from the database using the specified primary key
+     */
+
+    public void deleteExperience(String id) {
+        String[] idArray = {id};
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereClause = "pk=?";
+        db.delete(tblTravelExperiences, whereClause, idArray);
+        db.close();
     }
 
 
@@ -184,10 +197,9 @@ public class TravelAppDatabaseManager extends SQLiteOpenHelper {
     This method creates a cursor used for the custom cursor adaptor used in the ListView for displaying the existing travel experiences.
      */
     public Cursor createCursorForAdapter() {
-        String query = "SELECT " + "pk AS _id," + colLocation + "," + colFromDate + "," + colToDate +  "," + colDetails + " FROM " + tblTravelExperiences;
+        String query = "SELECT " + "pk AS _id," + colLocation + "," + colFromDate + "," + colToDate + "," + colDetails + " FROM " + tblTravelExperiences;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
-        // db.close(); //why can't i close this
         return cursor;
 
     }

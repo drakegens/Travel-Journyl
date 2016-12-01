@@ -2,10 +2,14 @@ package drakegens.traveljournyl;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private Button viewTravelFacts;
     private Button viewRSSFeed;
     private Toolbar mainMenuToolbar;
+    private static final int REQUEST_ACCESS_FINE_LOCATION = 1;
 
 
     @Override
@@ -31,6 +36,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mainMenuToolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(mainMenuToolbar);
+        //request location permissions
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            Log.d("Debug", "permissions aren't correct");
+            ActivityCompat.requestPermissions(this,
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    REQUEST_ACCESS_FINE_LOCATION);
+        } else {
+            Log.d("Debug", "permissions are correct");
+        }
 
         //Wiring up my buttons to go to correct activity onClick
         newTravelExperience = (Button) findViewById(R.id.newTravelExbtn);
@@ -50,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         existingTravelExperience.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //launch View Travel experiences activity
+                //launches View Travel experiences activity
                 Intent intent = new Intent(MainActivity.this, ViewTravelExperiencesActivity.class);
                 startActivity(intent);
             }
@@ -122,14 +137,59 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(drawingIntent);
                 return true;
             case R.id.action_maps:
+                if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+                        == PackageManager.PERMISSION_GRANTED) {
 
-                Intent mapsIntent = new Intent(MainActivity.this, MapsActivity.class);
-                startActivity(mapsIntent);
+                    Intent mapsIntent = new Intent(MainActivity.this, MapsActivity.class);
+                    startActivity(mapsIntent);
+                } else {
+                    AlertDialog.Builder alertDialogBuilderError = new AlertDialog.Builder(this);
+                    alertDialogBuilderError.setTitle(R.string.errorNotification);
+                    alertDialogBuilderError.setMessage(R.string.alertErrorMessage);
+                    alertDialogBuilderError.setPositiveButton("Ok",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog,
+                                                    int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+
+                    AlertDialog alertError = alertDialogBuilderError.create();
+                    alertError.show();
+                }
 
             default:
                 // If we got here, the user's action was not recognized.
                 return super.onOptionsItemSelected(item);
 
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        //ActionMenuItemView mapsItem = (ActionMenuItemView) findViewById(R.id.action_maps);
+        switch (requestCode) {
+            case REQUEST_ACCESS_FINE_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+
+                } else {
+
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
         }
     }
 

@@ -18,17 +18,31 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+/**
+ * Drake Gens
+ * This class is adapted from an Android developer guide. It connects to google play services in order to display current location and displays the google map.
+ */
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private GoogleMap map;
     private GoogleApiClient googleApiClient;
     private Location lastLocation;
     private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
+    private static final int REQUEST_ACCESS_FINE_LOCATION = 1;
+    // private boolean permissions = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+//        ActivityCompat.requestPermissions(this,
+//                new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+//                MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+//        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+//                != PackageManager.PERMISSION_GRANTED) {
+//            finish();
+//        }
+
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -60,6 +74,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 == PackageManager.PERMISSION_GRANTED) {
             map.setMyLocationEnabled(true);
         } else {
+            //finish();
             //Request permission
             ActivityCompat.requestPermissions(this,
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
@@ -93,7 +108,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 map.addMarker(new MarkerOptions().position(currentLocation).title("Current Location"));
                 map.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
             } else {
-                Log.d("Debug", "last location is null");
+                Log.d("Debug", "Last location is null");
             }
         } else {
             //Request permissions and re-perform activity
@@ -107,9 +122,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 map.addMarker(new MarkerOptions().position(currentLocation).title("Current Location"));
                 map.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
             } else {
-                Log.d("Debug", "last location is null");
+                Log.d("Debug", "Last location is null");
             }
-            Log.d("Debug", "bad permissions");
+            Log.d("Debug", "Bad permissions");
         }
     }
 
@@ -126,7 +141,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onConnectionSuspended(int cause) {
         // The connection to Google Play services was lost for some reason. We call connect() to
         // attempt to re-establish the connection.
-         Log.d("Debug", "Connection suspended");
+        Log.d("Debug", "Connection suspended");
         googleApiClient.connect();
     }
 

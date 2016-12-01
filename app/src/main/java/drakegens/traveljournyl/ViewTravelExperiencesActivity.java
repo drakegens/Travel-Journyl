@@ -9,9 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
 /**
-This class creates the database manager and sets the list view for this activity.
- Drake Gens
+ * This class creates the database manager and sets the list view for this activity.
+ * Drake Gens
  */
 public class ViewTravelExperiencesActivity extends AppCompatActivity {
 
@@ -22,6 +23,7 @@ public class ViewTravelExperiencesActivity extends AppCompatActivity {
     private static final String colFromDate = "from_date";
     private static final String colToDate = "to_date";
     private static final String colDetails = "details";
+    private static final String colId = "_id";
     private final Context context = this;
 
     @Override
@@ -57,11 +59,27 @@ public class ViewTravelExperiencesActivity extends AppCompatActivity {
                                 dialog.dismiss();
                             }
                         });
+                alertDialogBuilder.setNegativeButton("Delete",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                deleteExperience(cursor.getString(cursor.getColumnIndex(colId)));
+                                dialog.dismiss();
+                                finish();
+                            }
+                        });
 
                 AlertDialog alert = alertDialogBuilder.create();
                 alert.show();
 
             }
         });
+    }
+
+    private void deleteExperience(String id) {
+        TravelAppDatabaseManager dbMgr = new TravelAppDatabaseManager(this, "travel_app_db.db", null, 1);
+        dbMgr.dbOpen();
+        dbMgr.deleteExperience(id);
     }
 }

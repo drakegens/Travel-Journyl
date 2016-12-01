@@ -32,4 +32,5 @@
     <string name="alertDialogSuccessTravelAddedMessage">Your experience has been successfully added.</string>
     <string name="headerForExistingTravelExperiences">View Existing Travel Experiences!</string>
     <string name="title_activity_maps">Map</string>
+    <string name="alertErrorMessage">Please allow location permissions to use this feature.</string>
 </resources>

@@ -13,6 +13,7 @@ import android.widget.EditText;
 import java.util.Calendar;
 
 /**
+ * Drake Gens
  * This activity class handles user input for a new travel experience, and then stores it in the database.
  */
 public class NewTravelActivity extends AppCompatActivity {

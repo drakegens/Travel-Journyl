@@ -3,7 +3,6 @@ package drakegens.traveljournyl;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.TextView;
 
 import org.xml.sax.Attributes;
@@ -19,10 +18,14 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+/**
+ * This class handles the RSS feed activity. Pulls the rss feed from the internet using appropriate permissions and displays it in a scrollable textview.
+ */
 public class ViewRSSFeedActivity extends AppCompatActivity {
 
     private String rssResult = "";
     private boolean item = false;
+    private static final String urlString = "http://feeds.bbci.co.uk/news/world/rss.xml";
 
 
     @Override
@@ -30,18 +33,18 @@ public class ViewRSSFeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_rssfeed);
 
-        AsyncRSSFeedParser arfp = new AsyncRSSFeedParser();
-        arfp.execute();
+        AsyncRSSFeedParser asyncRSSFeedParser = new AsyncRSSFeedParser();
+        asyncRSSFeedParser.execute();
 
 
     }
 
     /**
-     * Inner class that creates a seperate thread in order to handle RSS feed
+     * Inner class that creates a separate thread in order to handle RSS feed
      */
     private class AsyncRSSFeedParser extends AsyncTask<String, String, String> {
 
-        private static final String urlString = "http://feeds.bbci.co.uk/news/world/rss.xml";
+
         TextView tvRSSResult = (TextView) findViewById(R.id.RSSfeed);
 
         /*
@@ -79,7 +82,7 @@ public class ViewRSSFeedActivity extends AppCompatActivity {
 
                 e.printStackTrace();
             }
-            Log.d("Debug", rssResult);
+
 
             return null;
         }

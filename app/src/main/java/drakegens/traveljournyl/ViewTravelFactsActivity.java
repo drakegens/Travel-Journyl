@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+/**
+ * This class handles the existing travel experiences view. It uses a list view to view the pulled data from the database. The user can view experiences
+ * in more detail and also delete experiences.
+ */
 public class ViewTravelFactsActivity extends AppCompatActivity {
 
     private Button newRandomFactbtn;
@@ -33,7 +36,7 @@ public class ViewTravelFactsActivity extends AppCompatActivity {
         newRandomFactbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //new Random fact
+                //new random fact
                 displayTravelFact.setText(generateRandomFact());
             }
         });
@@ -56,8 +59,6 @@ public class ViewTravelFactsActivity extends AppCompatActivity {
                         addedNewFact = alertDialogText.getText().toString();
                         addNewFact(addedNewFact);
                         dialog.dismiss();
-                        Log.d("Debug", addedNewFact);
-
                     }
                 });
                 AlertDialog alert = alertDialogBuilder.create();
