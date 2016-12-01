@@ -27,23 +27,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap map;
     private GoogleApiClient googleApiClient;
     private Location lastLocation;
-    private static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
-    private static final int REQUEST_ACCESS_FINE_LOCATION = 1;
-    // private boolean permissions = false;
+    private static final int REQUEST_ACCESS_FINE_LOCATION = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-//        ActivityCompat.requestPermissions(this,
-//                new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-//                MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-//        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
-//                != PackageManager.PERMISSION_GRANTED) {
-//            finish();
-//        }
-
-
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -74,11 +64,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 == PackageManager.PERMISSION_GRANTED) {
             map.setMyLocationEnabled(true);
         } else {
-            //finish();
-            //Request permission
             ActivityCompat.requestPermissions(this,
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                    MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+                    REQUEST_ACCESS_FINE_LOCATION);
             map.setMyLocationEnabled(true);
         }
     }
@@ -100,7 +88,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Log.d("Debug", "Connection Successful");
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
-            Log.d("Debug", "permissions are okay");
+            Log.d("Debug", "Permissions are okay");
             lastLocation = LocationServices.FusedLocationApi.getLastLocation(
                     googleApiClient);
             if (lastLocation != null) {
@@ -114,7 +102,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             //Request permissions and re-perform activity
             ActivityCompat.requestPermissions(this,
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                    MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+                    REQUEST_ACCESS_FINE_LOCATION);
             lastLocation = LocationServices.FusedLocationApi.getLastLocation(
                     googleApiClient);
             if (lastLocation != null) {

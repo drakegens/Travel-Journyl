@@ -34,7 +34,6 @@ public class DrawingView extends View {
         canvas.drawLine(50, 50, 50, 1000, paint);
         canvas.drawLine(100, 100, 150, 100, paint);
         canvas.drawLine(150, 100, 600, 800, paint);
-      //  paint.setStrokeWidth(500);
         paint.setTextSize(24);
         canvas.drawText("Enthusiasm Vs. Age", x, y, paint);
         x = 75;

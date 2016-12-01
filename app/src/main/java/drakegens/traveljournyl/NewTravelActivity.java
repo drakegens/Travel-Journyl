@@ -32,7 +32,6 @@ public class NewTravelActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_travel);
 
-        //header = (TextView) findViewById(R.id.header);
         location = (EditText) findViewById(R.id.location);
         details = (EditText) findViewById(R.id.etExperienceDetails);
         fromDate = (EditText) findViewById(R.id.etFromDate);
@@ -43,7 +42,6 @@ public class NewTravelActivity extends AppCompatActivity {
                 int year = calendar.get(Calendar.YEAR);
                 int month = calendar.get(Calendar.MONTH);
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
-                // System.out.println("the selected " + day);
                 DatePickerDialog dialog = new DatePickerDialog(NewTravelActivity.this,
                         new FromDateSetListener(), year, month, day);
                 dialog.show();

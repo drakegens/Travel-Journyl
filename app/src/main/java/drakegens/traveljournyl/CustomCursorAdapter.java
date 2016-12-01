@@ -15,7 +15,6 @@ public class CustomCursorAdapter extends ResourceCursorAdapter {
     private static final String colLocation = "location";
     private static final String colFromDate = "from_date";
     private static final String colToDate = "to_date";
-    private static final String colDetails = "details";
 
     public CustomCursorAdapter(Context context, int layout, Cursor cursor, int flags) {
         super(context, layout, cursor, flags);

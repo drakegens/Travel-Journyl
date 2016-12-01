@@ -9,7 +9,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,12 +38,9 @@ public class MainActivity extends AppCompatActivity {
         //request location permissions
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
-            Log.d("Debug", "permissions aren't correct");
             ActivityCompat.requestPermissions(this,
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                     REQUEST_ACCESS_FINE_LOCATION);
-        } else {
-            Log.d("Debug", "permissions are correct");
         }
 
         //Wiring up my buttons to go to correct activity onClick
@@ -57,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
 
             }
-
-
         });
 
         existingTravelExperience = (Button) findViewById(R.id.existTravelExbtn);
@@ -169,21 +163,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
-        //ActionMenuItemView mapsItem = (ActionMenuItemView) findViewById(R.id.action_maps);
         switch (requestCode) {
             case REQUEST_ACCESS_FINE_LOCATION: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
-
+                    //permission granted
                 } else {
 
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
+                    //This is handled when the maps action button is pressed.
                 }
                 return;
             }

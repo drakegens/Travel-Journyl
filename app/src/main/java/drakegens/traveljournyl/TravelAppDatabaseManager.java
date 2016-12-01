@@ -111,8 +111,6 @@ class TravelAppDatabaseManager extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         db.setLocale(Locale.getDefault());
         int size = (int) DatabaseUtils.queryNumEntries(db, tblTravelFacts);
-        // String strCount = Integer.toString(size);
-        // Log.d("Debug", strCount);
         db.close();
         return size;
     }
