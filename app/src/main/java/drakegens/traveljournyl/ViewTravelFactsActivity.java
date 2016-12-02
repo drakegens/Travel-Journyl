@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -62,6 +63,8 @@ public class ViewTravelFactsActivity extends AppCompatActivity {
                     }
                 });
                 AlertDialog alert = alertDialogBuilder.create();
+                //add keyboard to dialog
+                alert.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
                 alert.show();
 
 
